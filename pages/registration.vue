@@ -26,7 +26,7 @@ const register = async () => {
       data: {
         name: name.value,
       },
-      emailRedirectTo: 'http://localhost:4000'
+      emailRedirectTo: 'https://mynuxtstore.netlify.app/'
     }
   });
 

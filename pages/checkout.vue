@@ -113,7 +113,7 @@ const handlePayment = async () => {
   const {error} = await stripe.confirmPayment({
     elements,
     confirmParams: {
-      return_url: "http://localhost:4000/success-payment",
+      return_url: "https://mynuxtstore.netlify.app/success-payment",
     },
   });
 
