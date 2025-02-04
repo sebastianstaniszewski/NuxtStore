@@ -19,9 +19,9 @@ const totalPayment = computed(() => {
   return 0;
 });
 
-const stripePayment = useState(() => {
-  return Math.floor(totalPayment.value * 100)
-})
+const stripePaymentFormat = useState(() => {
+  return Math.floor(totalPayment.value * 100);
+});
 
 const saveCartAndStock = async () => {
   try {
@@ -63,43 +63,43 @@ const saveCartAndStock = async () => {
   }
 };
 
-const config = useRuntimeConfig()
-const {stripePK} = config.public
-let stripe
-let elements
-let clientSecret
+const config = useRuntimeConfig();
+const {stripePK} = config.public;
+let stripe;
+let elements;
+let clientSecret;
 
 onMounted(async () => {
-  stripe = await Stripe(stripePK)
+  stripe = await Stripe(stripePK);
   const initialize = async () => {
     const {data} = await useFetch('/api/stripe/payment', {
       method: 'post',
       body: {
-        amount: stripePayment.value
+        amount: stripePaymentFormat.value
       }
-    })
+    });
 
-    clientSecret = data.value
-    console.log(clientSecret)
+    clientSecret = data.value;
+
     const appearance = {
       theme: 'stripe'
-    }
+    };
 
     const paymentElementOptions = {
       layouts: 'tabs'
-    }
+    };
 
     elements = stripe.elements({
       appearance,
       clientSecret,
-    })
+    });
 
-    const paymentElement = elements.create('payment', paymentElementOptions)
-    paymentElement.mount('#payment-element')
+    const paymentElement = elements.create('payment', paymentElementOptions);
+    paymentElement.mount('#payment-element');
   }
 
-  initialize()
-  checkStatus()
+  initialize();
+  checkStatus();
 })
 
 const handlePayment = async () => {
@@ -133,7 +133,7 @@ async function checkStatus() {
 
   if (!clientSecret) {
     return;
-  }
+  };
 
   const {paymentIntent} = await stripe.retrievePaymentIntent(clientSecret);
 
