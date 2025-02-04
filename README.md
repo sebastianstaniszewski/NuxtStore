@@ -2,6 +2,14 @@
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Fake credit card number to test strapi payment
+
+4242424242424242
+
+5555555555554444
+
+378282246310005
+
 ## Setup
 
 Make sure to install dependencies:
